@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tfswufe.mapper.BillMapper">
+    <select id="SelectCheckMapper" resultType="Bill" parameterType="Bill">
+        SELECT * FROM bill
+        <where>
+            <if test="name != null and name != ''">
+                and name like "%"#{name}"%"
+            </if>
+            <if test="paymoney != null and paymoney != ''">
+                and paymoney like "%"#{paymoney}"%"
+            </if>
+        </where>
+    </select>
+
+    <insert id="InsertCheckMapper" parameterType="Bill">
+        INSERT INTO bill VALUES(null,#{name},#{number},#{money},#{paymoney},#{supname},#{notice},#{date})
+    </insert>
+</mapper>
